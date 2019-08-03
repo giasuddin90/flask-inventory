@@ -1,0 +1,8 @@
+@import "/var/www/qicmis-project/cdn/cdn/static/mixin-variables/qicmis-variables";
+/*Kalpurush*/
+@font-face{
+  font-family:'Kalpurush';
+  src: url('#{$cdn-fonts-path}/kalpurush/kalpurush.ttf') format('truetype');
+  font-weight:normal;
+  font-style:normal;
+}

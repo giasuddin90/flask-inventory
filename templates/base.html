@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SoftBook Pos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    {#    <script src="/static/js/bootstrap.bundle.min.js"></script>#}
+    <script src="/static/js/jquery-1.10.2.js"></script>
+    <script src="/static/js/jquery-ui.js"></script>
+
+</head>
+<body>
+<div class="breadcrumb bredcamn ">
+    <h1><img src="/static/css/icon/stopwatch.png"  style="height:30px"> সহজ হিসাব</h1>
+    <hr class="my-2">
+    <p class="lead">নিখুঁত হিসাব, ব্যবসার উন্নতির প্রথম ধাপ।</p>
+
+</div>
+{#..........................#}
+
+<div class="tab ">
+    <a href="{{ url_for('home') }}"><button type="button"><img src="/static/css/icon/product.png"  style="height:20px">  মজুদ পণ্য</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('sales_report') }}"><button type="button"><img src="/static/css/icon/profit.png"  style="height:20px">  লাভ ক্ষতি</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('top_selling_product') }}"><button type="button"><img src="/static/css/icon/hot-item.png"  style="height:20px">  সেরা পণ্য</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('product_purchase_list') }}"><button type="button"><img src="/static/css/icon/purchase.png"  style="height:20px">  ক্রয় হিসাব</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('product_sales_list') }}"><button type="button"><img src="/static/css/icon/sale.png"  style="height:20px">  বিক্রয় হিসাব</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('product_damage_list') }}"><button type="button"><img src="/static/css/icon/trash.png"  style="height:20px">  নষ্ট পণ্য</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('database_backup') }}"><button type="button"><img src="/static/css/icon/back_up.png"  style="height:20px">  ব্যাকআপ</button></a>
+    <hr class="my-1">
+    <a href="{{ url_for('upload') }}"><button type="button"><img src="/static/css/icon/backup_restore.png"  style="height:20px">  ব্যাকআপ তুলুন</button></a>
+
+
+</div>
+
+<div class="tabcontent">
+    <div class="container">
+        {% block fromblock %}{% endblock %}
+        {% block datablock %}{% endblock %}
+    </div>
+
+</div>
+
+
+
+</body>
+
+<script>
+    function delete_warning(delete_url, item_id) {
+        var answer = confirm("আপনি কি সত্যিই ডিলিট করতে চান !!!");
+
+        if (answer) {
+            location.href = delete_url + item_id
+        }
+    }
+
+    $(function() {
+        $( ".dtpick" ).datepicker();
+    });
+
+</script>
+
+</html> 
+

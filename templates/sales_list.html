@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block datablock %}
+     <button type="button" class="btn btn-primary btn-lg btn-block">বিক্রয় হওয়া পণ্যের হিসাব</button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>বিক্রির তারিখ </th>
+            <th>পণ্যের নাম </th>
+            <th>মোট ইউনিট</th>
+            <th>বিক্রয় মূল্য</th>
+            <th>লাভের পরিমাণ</th>
+            <th>ক্রেতার নাম</th>
+            <th>বাতিল করুন </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in queryset %}
+            <tr>
+                <td>{{ item.sales_date}}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.total_unit }}</td>
+                <td>{{ item.sales_price }}</td>
+                <td>{{ item.sales_commission }}</td>
+                <td>{{ item.buyer_name }}</td>
+                <td><a onclick="delete_warning('/product/sales/delete/',{{item.id}})" href="#"><img src="/static/css/icon/delete.png"  style="height:15px">বাতিল করুন </a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+    {% for key, value in pagination_item.items() %}
+            <li> <a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
+        {% endfor %}
+
+  </ul>
+
+
+
+
+{% endblock %}

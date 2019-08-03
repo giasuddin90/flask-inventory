@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block fromblock %}
+    {% if operation =="create"  %}
+     <form class="form-group" action="/product/create" method="post">
+    {% endif %}
+    {% if operation =="update"  %}
+    <form class="form-group" action="{{ url_for('product_update', product_id=data_id) }}" method="post">
+    {% endif %}
+
+        <button type="button" class="btn btn-primary btn-lg btn-block">পণ্যের বিবরণ </button>
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label }}
+                {{ field(class="form-control") }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+{% endblock %}
+
+
+

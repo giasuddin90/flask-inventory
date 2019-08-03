@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block datablock %}
+     <button type="button" class="btn btn-primary btn-lg btn-block">গত ১৫ দিনের লাভ ক্ষতি </button>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>বিক্রির তারিখ </th>
+            <th>মোট ইউনিট</th>
+            <th>মোট বিক্রয়</th>
+            <th>লাভের পরিমাণ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in queryset %}
+            <tr>
+                <td>{{ item.sales_date}}</td>
+                <td>{{ item.total_order }}</td>
+                <td>{{ item.total_sales }}</td>
+                <td>{{ item.sales_profit }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+     <button type="button" class="btn btn-primary btn-lg btn-block">গত ৬ মাসের লাভ ক্ষতি </button>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>বিক্রির মাস </th>
+            <th>মোট ইউনিট</th>
+            <th>মোট বিক্রয়</th>
+            <th>লাভের পরিমাণ</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in queryset_month %}
+            <tr>
+                <td>{{ item.Sales.month_name}}</td>
+                <td>{{ item.total_order }}</td>
+                <td>{{ item.total_sales }}</td>
+                <td>{{ item.sales_profit }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block">গত ৬ মাসের নষ্ট পণ্য</button>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>নষ্টের  মাস</th>
+            <th>মোট ইউনিট</th>
+            <th>ক্ষতির পরিমাণয়</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in query_damage %}
+            <tr>
+                <td>{{ item.Damage.month_name}}</td>
+                <td>{{ item.total_damage }}</td>
+                <td>{{ item.damage_amount }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
