@@ -24,22 +24,46 @@ The purpose of site to get inventory calculation
 
 ## Project Structure
 
-      localization-text
-        ├── app
-            ├── __init__.py
-            ├── forms.py
-            ├── model.py
-            ├── views.py 
-        ├── tests
-        ├── application.py
-        ├── Dockerfile
-        ├── generate_config.py
-        ├── generate_config.py.sample
-        ├── production_run.sh
-        ├── requirement.txt
+      inventory
+        ├── app.py
+        ├── forms.py
+        ├── helper.py
+        ├── models.py
         ├── README.md
-        # Coding patterns
-        
+        ├── requirements.txt
+        ├── static
+        │   ├── css
+        │   │   ├── app.css
+        │   │   ├── bootstrap.min.css
+        │   │   ├── font-awesome.min.css
+        │   ├── js
+        │   │   ├── bootstrap.bundle.min.js
+        │   │   ├── bootstrap.min.js
+        │   │   ├── jquery-1.10.2.js
+        │   │   └── jquery-ui.js
+        │   └── project_look.png
+        ├── templates
+        │   ├── backup_message.html
+        │   ├── backup_upload.html
+        │   ├── base_ex.html
+        │   ├── base.html
+        │   ├── damage_create.html
+        │   ├── damage_list.html
+        │   ├── product_create.html
+        │   ├── product_list.html
+        │   ├── product_update.html
+        │   ├── purchase_create.html
+        │   ├── purchase_list.html
+        │   ├── sales_create.html
+        │   ├── sales_list.html
+        │   ├── sales_report.html
+        │   ├── software_licence.html
+        │   ├── stock_out.html
+        │   └── top_selling_product_list.html
+        └── views.py
+
+
+## Coding patterns
 
 * **views** *There are views for showing product list, purchase, sales and popular product.*
 
