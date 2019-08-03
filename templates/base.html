@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="breadcrumb bredcamn ">
-    <h1><img src="/static/css/icon/stopwatch.png"  style="height:30px"> সহজ হিসাব</h1>
+    <h1><img src="/static/css/icon/stopwatch.png" style="height:30px"> সহজ হিসাব</h1>
     <hr class="my-2">
     <p class="lead">নিখুঁত হিসাব, ব্যবসার উন্নতির প্রথম ধাপ।</p>
 
@@ -22,21 +22,37 @@
 {#..........................#}
 
 <div class="tab ">
-    <a href="{{ url_for('home') }}"><button type="button"><img src="/static/css/icon/product.png"  style="height:20px">  মজুদ পণ্য</button></a>
+    <a href="{{ url_for('home') }}">
+        <button type="button"><img src="/static/css/icon/product.png" style="height:20px"> মজুদ পণ্য</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('sales_report') }}"><button type="button"><img src="/static/css/icon/profit.png"  style="height:20px">  লাভ ক্ষতি</button></a>
+    <a href="{{ url_for('sales_report') }}">
+        <button type="button"><img src="/static/css/icon/profit.png" style="height:20px"> লাভ ক্ষতি</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('top_selling_product') }}"><button type="button"><img src="/static/css/icon/hot-item.png"  style="height:20px">  সেরা পণ্য</button></a>
+    <a href="{{ url_for('top_selling_product') }}">
+        <button type="button"><img src="/static/css/icon/hot-item.png" style="height:20px"> সেরা পণ্য</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('product_purchase_list') }}"><button type="button"><img src="/static/css/icon/purchase.png"  style="height:20px">  ক্রয় হিসাব</button></a>
+    <a href="{{ url_for('product_purchase_list') }}">
+        <button type="button"><img src="/static/css/icon/purchase.png" style="height:20px"> ক্রয় হিসাব</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('product_sales_list') }}"><button type="button"><img src="/static/css/icon/sale.png"  style="height:20px">  বিক্রয় হিসাব</button></a>
+    <a href="{{ url_for('product_sales_list') }}">
+        <button type="button"><img src="/static/css/icon/sale.png" style="height:20px"> বিক্রয় হিসাব</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('product_damage_list') }}"><button type="button"><img src="/static/css/icon/trash.png"  style="height:20px">  নষ্ট পণ্য</button></a>
+    <a href="{{ url_for('product_damage_list') }}">
+        <button type="button"><img src="/static/css/icon/trash.png" style="height:20px"> নষ্ট পণ্য</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('database_backup') }}"><button type="button"><img src="/static/css/icon/back_up.png"  style="height:20px">  ব্যাকআপ</button></a>
+    <a href="{{ url_for('database_backup') }}">
+        <button type="button"><img src="/static/css/icon/back_up.png" style="height:20px"> ব্যাকআপ</button>
+    </a>
     <hr class="my-1">
-    <a href="{{ url_for('upload') }}"><button type="button"><img src="/static/css/icon/backup_restore.png"  style="height:20px">  ব্যাকআপ তুলুন</button></a>
+    <a href="{{ url_for('upload') }}">
+        <button type="button"><img src="/static/css/icon/backup_restore.png" style="height:20px"> ব্যাকআপ তুলুন</button>
+    </a>
 
 
 </div>
@@ -50,7 +66,6 @@
 </div>
 
 
-
 </body>
 
 <script>
@@ -62,8 +77,8 @@
         }
     }
 
-    $(function() {
-        $( ".dtpick" ).datepicker();
+    $(function () {
+        $(".dtpick").datepicker();
     });
 
 </script>

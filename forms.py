@@ -1,5 +1,5 @@
 __author__ = 'giasuddin'
-from wtforms import Form, FileField, ValidationError, BooleanField, TextAreaField, validators, HiddenField, StringField, DateField, SelectField, IntegerField
+from wtforms import Form, ValidationError, BooleanField, validators, StringField, DateField, IntegerField
 
 '''
 Important link for date picker
@@ -13,11 +13,14 @@ def field_length_check(form, field):
 
 
 class SalesDateSearchForm(Form):
-    sales_date = DateField(u'বিক্রির তারিখ', format="%m/%d/%Y",  validators=[validators.optional()])
+    """
+    This form is used for searching by date
+    """
+    sales_date = DateField(u'বিক্রির তারিখ', format="%m/%d/%Y", validators=[validators.optional()])
 
 
 class ProductForm(Form):
-    """Keyword inserting form"""
+    """This form used for inserting several type of product"""
     name = StringField(u'পণ্যের নাম', validators=[validators.data_required(), field_length_check])
     description = StringField(u'পণ্যের বিবরণ', validators=[validators.optional()])
     purchase_price = IntegerField(u'ক্রয় মূল্য ', validators=[validators.data_required(), field_length_check])
@@ -27,8 +30,8 @@ class ProductForm(Form):
 
 
 class SalesForm(Form):
-    """Keyword inserting form"""
-    sales_date = DateField(u'বিক্রির তারিখ', format="%m/%d/%Y",  validators=[validators.data_required()])
+    """This form store all sales transaction"""
+    sales_date = DateField(u'বিক্রির তারিখ', format="%m/%d/%Y", validators=[validators.data_required()])
     total_unit = IntegerField(u'মোট ইউনিট', validators=[validators.data_required(), field_length_check])
     sales_price = IntegerField(u'বিক্রয় মূল্য', validators=[validators.data_required()])
     buyer_name = StringField(u'ক্রেতার নাম ', validators=[validators.data_required(), field_length_check])
@@ -37,8 +40,8 @@ class SalesForm(Form):
 
 
 class PurchaseForm(Form):
-    """Keyword inserting form"""
-    purchase_date = DateField(u'ক্রয়ের তারিখ ', format="%m/%d/%Y",  validators=[validators.data_required()])
+    """"This form store all purchase transaction"""
+    purchase_date = DateField(u'ক্রয়ের তারিখ ', format="%m/%d/%Y", validators=[validators.data_required()])
     purchase_price = IntegerField(u'ক্রয় মূল্য', validators=[validators.data_required(), field_length_check])
     total_unit = IntegerField(u'মোট ইউনিট', validators=[validators.data_required(), field_length_check])
     seller_name = StringField(u'বিক্রাতার নাম ', validators=[validators.data_required(), field_length_check])
@@ -47,11 +50,9 @@ class PurchaseForm(Form):
 
 
 class DamageForm(Form):
-    """Keyword inserting form"""
+    """This form store all damage product"""
     damage_date = DateField(u'নষ্টের  তারিখ', format="%m/%d/%Y", validators=[validators.optional()])
     total_unit = IntegerField(u'মোট ইউনিট', validators=[validators.data_required(), field_length_check])
     damage_reason = StringField(u'নষ্টের কারণ ', validators=[validators.data_required(), field_length_check])
 
 
-
-# form = AddressForm(request.form, country='US')

@@ -23,9 +23,9 @@ def database_backup_func():
 
 
 def get_mac():
-  mac_num = hex(uuid.getnode()).replace('0x', '').upper()
-  mac = '-'.join(mac_num[i: i + 2] for i in range(0, 11, 2))
-  return mac
+    mac_num = hex(uuid.getnode()).replace('0x', '').upper()
+    mac = '-'.join(mac_num[i: i + 2] for i in range(0, 11, 2))
+    return mac
 
 
 def check_mac_security():
@@ -61,11 +61,10 @@ def api_processing(queryset):
 
 def profit_calculate(purchase_price, sales_price, total_unit):
     price_dff = sales_price - purchase_price
-    earning = price_dff*total_unit
+    earning = price_dff * total_unit
     return earning
 
-if __name__ == '__main__':
-    print(check_mac_security())
+
 
 
 

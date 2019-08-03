@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block fromblock %}
     <div class="jumbotron">
-        <h1 class="display-4"><img src="/static/css/icon/backup_restore.png"  style="height:40px"> ব্যাকআপ আপলোড  </h1>
+        <h1 class="display-4"><img src="/static/css/icon/backup_restore.png" style="height:40px"> ব্যাকআপ আপলোড </h1>
         <hr class="my-4">
         <p class="lead">ব্যাকআপ ফাইল আপলোড করুন । </p>
     </div>
     {% if error_message %}
         <h3>{{ error_message }}</h3>
     {% endif %}
-    <form action = "{{ url_for('upload') }}" method = "POST" enctype = "multipart/form-data">
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleFormControlFile1">ব্যাকআপ ফাইল আপলোড:</label>
-            <input type = "file" name = "file" />
-            <input type = "submit" value="submit"/>
+            <input type="file" name="file"/>
+            <input type="submit" value="submit"/>
         </div>
     </form>
 {% endblock %}

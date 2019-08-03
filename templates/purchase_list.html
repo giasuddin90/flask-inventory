@@ -4,21 +4,22 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>ক্রয়ের তারিখ </th>
-            <th>পণ্যের নাম </th>
+            <th>ক্রয়ের তারিখ</th>
+            <th>পণ্যের নাম</th>
             <th>মোট ইউনিট</th>
-            <th>বিক্রাতার নাম </th>
-            <th>বাতিল করুন </th>
+            <th>বিক্রাতার নাম</th>
+            <th>বাতিল করুন</th>
         </tr>
         </thead>
         <tbody>
         {% for item in queryset %}
             <tr>
-                <td>{{ item.purchase_date}}</td>
+                <td>{{ item.purchase_date }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.total_unit }}</td>
                 <td>{{ item.seller_name }}</td>
-                <td><a onclick="delete_warning('/product/purchase/delete/',{{item.id}})" href="#"><img src="/static/css/icon/delete.png"  style="height:15px">বাতিল করুন </a></td>
+                <td><a onclick="delete_warning('/product/purchase/delete/',{{ item.id }})" href="#"><img
+                        src="/static/css/icon/delete.png" style="height:15px">বাতিল করুন </a></td>
             </tr>
 
         {% endfor %}
@@ -27,11 +28,11 @@
     </table>
 
     <ul class="pagination">
-    {% for key, value in pagination_item.items() %}
-            <li> <a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
+        {% for key, value in pagination_item.items() %}
+            <li><a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
         {% endfor %}
 
-  </ul>
+    </ul>
 
 
 

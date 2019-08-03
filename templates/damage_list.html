@@ -1,24 +1,25 @@
 {% extends "base.html" %}
 {% block datablock %}
-     <button type="button" class="btn btn-primary btn-lg btn-block">নষ্ট হওয়া পণ্যের হিসাব</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block">নষ্ট হওয়া পণ্যের হিসাব</button>
     <table class="table table-striped">
         <thead>
         <tr>
-             <th>নষ্টের  তারিখ</th>
-            <th>পণ্যের নাম </th>
+            <th>নষ্টের তারিখ</th>
+            <th>পণ্যের নাম</th>
             <th>মোট ইউনিট</th>
-            <th>ক্ষতির পরিমাণ </th>
-            <th>বাতিল করুন </th>
+            <th>ক্ষতির পরিমাণ</th>
+            <th>বাতিল করুন</th>
         </tr>
         </thead>
         <tbody>
         {% for item in queryset %}
             <tr>
-                <td>{{ item.damage_date}}</td>
+                <td>{{ item.damage_date }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.total_unit }}</td>
                 <td>{{ item.damage_amount }}</td>
-                <td><a onclick="delete_warning('/product/damage/delete/',{{item.id}})" href="#"><img src="/static/css/icon/delete.png"  style="height:15px">বাতিল করুন </a></td>
+                <td><a onclick="delete_warning('/product/damage/delete/',{{ item.id }})" href="#"><img
+                        src="/static/css/icon/delete.png" style="height:15px">বাতিল করুন </a></td>
             </tr>
 
         {% endfor %}
@@ -27,11 +28,11 @@
     </table>
 
     <ul class="pagination">
-    {% for key, value in pagination_item.items() %}
-            <li> <a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
+        {% for key, value in pagination_item.items() %}
+            <li><a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
         {% endfor %}
 
-  </ul>
+    </ul>
 
 
 

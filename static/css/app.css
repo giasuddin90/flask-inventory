@@ -1,10 +1,11 @@
-@font-face{
-  font-family:'Kalpurush';
-  src: url('../fonts/kalpurush/kalpurush.ttf') format('truetype');
-  font-weight:normal;
-  font-style:normal;
+@font-face {
+    font-family: 'Kalpurush';
+    src: url('../fonts/kalpurush/kalpurush.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
-*{
+
+* {
     font-family: Roboto, Kalpurush;
 }
 
@@ -52,7 +53,7 @@
     height: 100%;
 }
 
-.bredcamn{
+.bredcamn {
     padding-bottom: 0;
     margin-bottom: 0;
 }

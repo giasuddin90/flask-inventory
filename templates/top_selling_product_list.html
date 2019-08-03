@@ -1,33 +1,34 @@
 {% extends "base.html" %}
 {% block datablock %}
-    <form action="{{ url_for('top_selling_product') }}" >
+    <form action="{{ url_for('top_selling_product') }}">
         <div class="form-row">
-            <div class="form-group col-md-6" >
-                <button type="button" class="btn btn-primary btn-lg btn-block">বেশি বিক্রয় হওয়া পণ্য <br> {{ sales_date_param }} </button>
+            <div class="form-group col-md-6">
+                <button type="button" class="btn btn-primary btn-lg btn-block">বেশি বিক্রয় হওয়া পণ্য
+                    <br> {{ sales_date_param }} </button>
             </div>
-            <div class="form-group col-md-4" >
-                {{ form.sales_date.label}}
+            <div class="form-group col-md-4">
+                {{ form.sales_date.label }}
                 {{ form.sales_date(class="form-control") }}
             </div>
             <div class="form-group col-md-2">
-                <label >  </label>
-                <button class="form-control btn btn-primary" type="submit" >Submit</button>
+                <label> </label>
+                <button class="form-control btn btn-primary" type="submit">Submit</button>
             </div>
         </div>
     </form>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>পণ্যের নাম </th>
+            <th>পণ্যের নাম</th>
             <th>মোট ইউনিট</th>
-            <th>মোট বিক্রয় </th>
+            <th>মোট বিক্রয়</th>
             <th>লাভের পরিমাণ</th>
         </tr>
         </thead>
         <tbody>
         {% for item in queryset %}
             <tr>
-                <td>{{ item.Sales.name}}</td>
+                <td>{{ item.Sales.name }}</td>
                 <td>{{ item.total_order }}</td>
                 <td>{{ item.total_sales }}</td>
                 <td>{{ item.total_sales_commission }}</td>

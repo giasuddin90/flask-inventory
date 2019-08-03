@@ -1,9 +1,10 @@
-from flask import (
-    redirect, render_template, request, url_for, send_file, send_from_directory
-)
 import datetime
-from datetime import date
 import os
+
+from flask import (
+    redirect, render_template, request, url_for
+)
+
 from models import Product, Purchase, Sales, Damage
 from helper import pager, profit_calculate, database_backup_func, check_mac_security
 from forms import ProductForm, SalesForm, PurchaseForm, DamageForm, SalesDateSearchForm
@@ -49,7 +50,8 @@ def sales_report():
     queryset_month = Sales.by_monthly_sales()
     query_damage = Damage.by_monthly_damage()
 
-    return render_template('sales_report.html', queryset=queryset, queryset_month=queryset_month, query_damage=query_damage )
+    return render_template('sales_report.html', queryset=queryset, queryset_month=queryset_month,
+                           query_damage=query_damage)
 
 
 @app.route('/product/create', methods=('GET', 'POST'))
@@ -102,6 +104,7 @@ def product_delete(product_id):
     entry = Product.delete_data(product_id)
     return redirect(url_for('home'))
 
+
 """
 starting purchase area
 """
@@ -151,9 +154,10 @@ def product_purchase_list():
 def purchase_delete(purchase_id):
     """Delete existing keyword """
     purchase_data = Purchase.by_id(purchase_id)
-    Product.decrease_inventory(purchase_data.product_id,  purchase_data.total_unit)
+    Product.decrease_inventory(purchase_data.product_id, purchase_data.total_unit)
     Purchase.delete_data(purchase_id)
     return redirect(url_for('product_purchase_list'))
+
 
 '''
 Starting sales area
@@ -162,7 +166,7 @@ Starting sales area
 
 @app.route('/product/stock-out')
 def stock_out():
-   return render_template('stock_out.html')
+    return render_template('stock_out.html')
 
 
 @app.route('/product/sales/<int:product_id>', methods=('GET', 'POST'))
@@ -214,7 +218,7 @@ def product_sales_list():
 def sales_delete(sales_id):
     """Delete existing keyword """
     sales_data = Sales.by_id(sales_id)
-    Product.increase_inventory(sales_data.product_id,  sales_data.total_unit)
+    Product.increase_inventory(sales_data.product_id, sales_data.total_unit)
     Sales.delete_data(sales_id)
     return redirect(url_for('product_sales_list'))
 
@@ -275,7 +279,7 @@ def product_damage_list():
 def damage_delete(damage_id):
     """Delete existing keyword """
     dmage_data = Damage.by_id(damage_id)
-    Product.increase_inventory(dmage_data.product_id,  dmage_data.total_unit)
+    Product.increase_inventory(dmage_data.product_id, dmage_data.total_unit)
     Damage.delete_data(damage_id)
     return redirect(url_for('product_damage_list'))
 
@@ -284,12 +288,12 @@ def damage_delete(damage_id):
 Staring database backup area
 '''
 
+
 @app.route('/backup-data')
 def database_backup():
     """Uploading backup file"""
     back_up = database_backup_func()
     return render_template('backup_message.html')
-
 
 
 @app.route('/backup/file-upload', methods=('POST', 'GET'))

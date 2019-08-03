@@ -1,22 +1,19 @@
+from datetime import date, timedelta
+
 from sqlalchemy import (
-    Table,
     Column,
-    Index,
     Integer,
     Text,
     String,
     DateTime,
     Date,
     ForeignKey,
-    create_engine,
     desc,
-    asc,
     Boolean,
-    and_,
     or_
 )
-from datetime import date, timedelta
 from flask_sqlalchemy import SQLAlchemy
+
 db = SQLAlchemy()
 DBSession = db.session
 
@@ -45,7 +42,7 @@ class Product(db.Model):
     purchase = db.relationship("Purchase", cascade="all, delete-orphan")
     sales = db.relationship("Sales", cascade="all, delete-orphan")
     damage = db.relationship("Damage", cascade="all, delete-orphan")
-    
+
     # get all with descending order and limit from a table
     @classmethod
     def by_all(cls):
@@ -60,7 +57,7 @@ class Product(db.Model):
         product_list = [('', 'Select Product')]
         query = DBSession.query(Product).filter(Product.is_published == True).all()
         for item in query:
-            data= (item.id, item.name)
+            data = (item.id, item.name)
             product_list.append(data)
 
         return product_list
@@ -69,7 +66,7 @@ class Product(db.Model):
     def by_search_filter(cls, searchtext):
         """ Provide search result based on base text and category field"""
         queryset = DBSession.query(Product).filter(or_(Product.base_text.ilike("%" + searchtext + "%"),
-                                                           Product.category.ilike("%" + searchtext + "%"))).all()
+                                                       Product.category.ilike("%" + searchtext + "%"))).all()
 
         return queryset
 
@@ -96,7 +93,7 @@ class Product(db.Model):
     @classmethod
     def delete_data(cls, data_id):
         """ Using for delating singel keyword """
-        product=DBSession.query(Product).filter_by(id=data_id).first()
+        product = DBSession.query(Product).filter_by(id=data_id).first()
         DBSession.delete(product)
         DBSession.commit()
         return 'keyword deteted'
@@ -157,8 +154,8 @@ class Sales(db.Model):
 
     @property
     def month_name(self):
-        month_dict= {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June',
-            7:'July', 8:'Augst', 9:'September', 10:'October', 11:'November', 12:'December'}
+        month_dict = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
+                      7: 'July', 8: 'Augst', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
         m_name = month_dict[self.sales_month]
         return m_name + '-' + str(self.sales_year)
 
@@ -195,7 +192,11 @@ class Sales(db.Model):
         """ Provide all stored keyword with custom field"""
         today = date.today()
         last_week = today - timedelta(15)
-        query = DBSession.query(Sales.sales_date.label("sales_date"), db.func.sum(Sales.sales_commission).label("sales_profit"), db.func.sum(Sales.total_unit).label("total_order"), db.func.sum(Sales.sales_price).label("total_sales")).filter(Sales.sales_date >= last_week).group_by(Sales.sales_date).all()
+        query = DBSession.query(Sales.sales_date.label("sales_date"),
+                                db.func.sum(Sales.sales_commission).label("sales_profit"),
+                                db.func.sum(Sales.total_unit).label("total_order"),
+                                db.func.sum(Sales.sales_price).label("total_sales")).filter(
+            Sales.sales_date >= last_week).group_by(Sales.sales_date).all()
         return query
 
     @classmethod
@@ -203,13 +204,22 @@ class Sales(db.Model):
         """ Provide all stored keyword with custom field"""
         today = date.today()
         last_six_month = today - timedelta(180)
-        query = DBSession.query(Sales, Sales.sales_month.label("sales_month"), db.func.sum(Sales.sales_commission).label("sales_profit"), db.func.sum(Sales.total_unit).label("total_order"), db.func.sum(Sales.sales_price).label("total_sales")).filter(Sales.sales_date >= last_six_month).group_by(Sales.sales_month).all()
+        query = DBSession.query(Sales, Sales.sales_month.label("sales_month"),
+                                db.func.sum(Sales.sales_commission).label("sales_profit"),
+                                db.func.sum(Sales.total_unit).label("total_order"),
+                                db.func.sum(Sales.sales_price).label("total_sales")).filter(
+            Sales.sales_date >= last_six_month).group_by(Sales.sales_month).all()
         return query
 
     @classmethod
     def by_date_top_product(cls, date_param):
         """Provide total property count based on date"""
-        query = DBSession.query(Sales, Sales.product_id.label("product_id"), db.func.sum(Sales.sales_commission).label("total_sales_commission"),  db.func.sum(Sales.total_unit).label("total_order"), db.func.sum(Sales.sales_price).label("total_sales")).filter(Sales.sales_date == date_param).group_by(Sales.product_id).order_by(desc(db.func.sum(Sales.total_unit))).all()
+        query = DBSession.query(Sales, Sales.product_id.label("product_id"),
+                                db.func.sum(Sales.sales_commission).label("total_sales_commission"),
+                                db.func.sum(Sales.total_unit).label("total_order"),
+                                db.func.sum(Sales.sales_price).label("total_sales")).filter(
+            Sales.sales_date == date_param).group_by(Sales.product_id).order_by(
+            desc(db.func.sum(Sales.total_unit))).all()
         return query
 
 
@@ -297,8 +307,8 @@ class Damage(db.Model):
 
     @property
     def month_name(self):
-        month_dict= {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June',
-            7:'July', 8:'Augst', 9:'September', 10:'October', 11:'November', 12:'December'}
+        month_dict = {1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June',
+                      7: 'July', 8: 'Augst', 9: 'September', 10: 'October', 11: 'November', 12: 'December'}
         m_name = month_dict[self.damage_month]
         return m_name + '-' + str(self.damage_year)
 
@@ -307,7 +317,10 @@ class Damage(db.Model):
         """ Provide all stored keyword with custom field"""
         today = date.today()
         last_six_month = today - timedelta(180)
-        query = DBSession.query(Damage, Damage.damage_month.label("damage_month"), db.func.sum(Damage.damage_amount).label("damage_amount"), db.func.sum(Damage.total_unit).label("total_damage")).filter(Damage.damage_date >= last_six_month).group_by(Damage.damage_month).all()
+        query = DBSession.query(Damage, Damage.damage_month.label("damage_month"),
+                                db.func.sum(Damage.damage_amount).label("damage_amount"),
+                                db.func.sum(Damage.total_unit).label("total_damage")).filter(
+            Damage.damage_date >= last_six_month).group_by(Damage.damage_month).all()
         return query
 
     @classmethod
@@ -339,10 +352,10 @@ class Damage(db.Model):
 
 
 
-# if __name__ == '__main__':
-#     # app = current_app
-#     with app.app_context():
-#         data2 = Sales.by_date_top_product('2018-10-22')
-#         for i in data2:
-#             print(i)
+        # if __name__ == '__main__':
+        # # app = current_app
+        #     with app.app_context():
+        #         data2 = Sales.by_date_top_product('2018-10-22')
+        #         for i in data2:
+        #             print(i)
         # print(data.count())

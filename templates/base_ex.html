@@ -6,21 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/jquery-ui.css">
-	<script src="/static/js/jquery-1.10.2.js"></script>
+    <script src="/static/js/jquery-1.10.2.js"></script>
     <script src="/static/js/jquery-ui.js"></script>
-
-
 
 
 </head>
 <body>
 <!-- Start Top Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <span class="navbar-brand mb-1 h1"><a href="/">Product</a></span>
-  <span class="navbar-brand mb-1 h1"><a href="/product/create">Create product</a></span>
-  <span class="navbar-brand mb-1 h1"><a href="/product/all-sales">Sales report</a></span>
-  <span class="navbar-brand mb-1 h1"><a href="/product/all-purchase">Purchase report</a></span>
-  <span class="navbar-brand mb-1 h1"><a href="/product/all-damages">Damage report</a></span>
+    <span class="navbar-brand mb-1 h1"><a href="/">Product</a></span>
+    <span class="navbar-brand mb-1 h1"><a href="/product/create">Create product</a></span>
+    <span class="navbar-brand mb-1 h1"><a href="/product/all-sales">Sales report</a></span>
+    <span class="navbar-brand mb-1 h1"><a href="/product/all-purchase">Purchase report</a></span>
+    <span class="navbar-brand mb-1 h1"><a href="/product/all-damages">Damage report</a></span>
 </nav>
 <!-- End Top Bar -->
 <div class="container">
@@ -39,9 +37,9 @@
         }
     }
 
-	$(function() {
-		$( ".dtpick" ).datepicker();
-	});
+    $(function () {
+        $(".dtpick").datepicker();
+    });
 
     document.getElementById("damage_date").classList.add('dtpick');
     document.getElementById("purchase_date").classList.add('dtpick');

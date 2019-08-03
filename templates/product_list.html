@@ -1,35 +1,44 @@
 {% extends "base.html" %}
 {% block datablock %}
-    <a href="{{ url_for('product_create') }}"><button type="button" class="btn btn-link btn-lg btn-block"><img src="/static/css/icon/add-button.png"  style="height:20px"> নতুন পণ্য</button>  </a>
+    <a href="{{ url_for('product_create') }}">
+        <button type="button" class="btn btn-link btn-lg btn-block"><img src="/static/css/icon/add-button.png"
+                                                                         style="height:20px"> নতুন পণ্য
+        </button>
+    </a>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>পণ্যের নাম</th>
-            <th>মজুদ আছে </th>
+            <th>মজুদ আছে</th>
             <th>বিক্রয় মূল্য</th>
             <th>ক্রয় মূল্য</th>
             <th>পণ্যের কোড</th>
-            <th><img src="/static/css/icon/edit.png"  style="height:15px"> এডিট</th>
-            <th><img src="/static/css/icon/delete.png"  style="height:15px"> ডিলিট</th>
-            <th><img src="/static/css/icon/add-button.png"  style="height:15px"> ক্রয়</th>
-            <th><img src="/static/css/icon/add-button.png"  style="height:15px"> বিক্রয়</th>
-            <th><img src="/static/css/icon/add-button.png"  style="height:15px"> নষ্ট</th>
+            <th><img src="/static/css/icon/edit.png" style="height:15px"> এডিট</th>
+            <th><img src="/static/css/icon/delete.png" style="height:15px"> ডিলিট</th>
+            <th><img src="/static/css/icon/add-button.png" style="height:15px"> ক্রয়</th>
+            <th><img src="/static/css/icon/add-button.png" style="height:15px"> বিক্রয়</th>
+            <th><img src="/static/css/icon/add-button.png" style="height:15px"> নষ্ট</th>
         </tr>
         </thead>
         <tbody>
         {% for item in queryset %}
             <tr>
-                <td>{{ item.name}}</td>
+                <td>{{ item.name }}</td>
                 <td>{{ item.total_unit }}</td>
                 <td>{{ item.sales_price }}</td>
                 <td>{{ item.purchase_price }}</td>
                 <td>{{ item.product_code }}</td>
-                <td><a  href="product/update/{{item.id}}"><img src="/static/css/icon/edit.png"  style="height:15px"> এডিট</a></td>
-                <td><a onclick="delete_warning('/product/delete/',{{item.id}})" href="#"><img src="/static/css/icon/delete.png"  style="height:15px"> ডিলিট</a></td>
-                <td><a  href="product/purchase/{{item.id}}"><img src="/static/css/icon/add-button.png"  style="height:15px"> ক্রয়</a></td>
-                <td><a  href="product/sales/{{item.id}}"><img src="/static/css/icon/add-button.png"  style="height:15px"> বিক্রয়</a></td>
-                <td><a  href="product/damage/{{item.id}}"><img src="/static/css/icon/add-button.png"  style="height:15px"> নষ্ট</a></td>
+                <td><a href="product/update/{{ item.id }}"><img src="/static/css/icon/edit.png" style="height:15px">
+                    এডিট</a></td>
+                <td><a onclick="delete_warning('/product/delete/',{{ item.id }})" href="#"><img
+                        src="/static/css/icon/delete.png" style="height:15px"> ডিলিট</a></td>
+                <td><a href="product/purchase/{{ item.id }}"><img src="/static/css/icon/add-button.png"
+                                                                  style="height:15px"> ক্রয়</a></td>
+                <td><a href="product/sales/{{ item.id }}"><img src="/static/css/icon/add-button.png"
+                                                               style="height:15px"> বিক্রয়</a></td>
+                <td><a href="product/damage/{{ item.id }}"><img src="/static/css/icon/add-button.png"
+                                                                style="height:15px"> নষ্ট</a></td>
             </tr>
 
         {% endfor %}
@@ -39,7 +48,7 @@
 
     <ul class="pagination">
         {% for key, value in pagination_item.items() %}
-            <li> <a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
+            <li><a aria-label=" " href="?next_page={{ key }}"> {{ key }}</a></li>
         {% endfor %}
 
     </ul>
