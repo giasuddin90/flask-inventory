@@ -23,12 +23,20 @@ def database_backup_func():
 
 
 def get_mac():
+    """
+    This function provide a pc mac address
+    :return:
+    """
     mac_num = hex(uuid.getnode()).replace('0x', '').upper()
     mac = '-'.join(mac_num[i: i + 2] for i in range(0, 11, 2))
     return mac
 
 
 def check_mac_security():
+    """
+    Software match mac for security
+    :return:
+    """
     pc_mac = get_mac()
     client_mac = CLIENT_MAC_ADDRESS.strip()
 
@@ -39,6 +47,12 @@ def check_mac_security():
 
 
 def pager(total_row=None, item_per_page=None):
+    """
+    This function provide a page dictionary
+    :param total_row:
+    :param item_per_page:
+    :return: page dictionary
+    """
     pages = {}
     total_page = total_row / item_per_page
 

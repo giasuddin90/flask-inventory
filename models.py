@@ -25,7 +25,7 @@ https://piotr.banaszkiewicz.org/blog/2012/06/29/flask-sqlalchemy-init_app/
 
 class Product(db.Model):
     """
-    opinion of a comment store in this table.
+   Table use for storing product and product detail in this table
     """
     __tablename__ = "product"
 
@@ -46,14 +46,14 @@ class Product(db.Model):
     # get all with descending order and limit from a table
     @classmethod
     def by_all(cls):
-        """ Provide all stored keyword with custom field"""
+        """ Provide all product list with custom field"""
         # query = DBSession.query(Product).filter(Product.is_published == True)
         query = DBSession.query(Product)
         return query
 
     @classmethod
     def by_all_id(cls):
-        """ Provide all stored keyword with custom field"""
+        """ Provide all publish product"""
         product_list = [('', 'Select Product')]
         query = DBSession.query(Product).filter(Product.is_published == True).all()
         for item in query:
@@ -77,14 +77,14 @@ class Product(db.Model):
         return query
 
     @classmethod
-    def by_id(cls, keyword_id):
-        """Get Keword bases on keyword id"""
-        query = DBSession.query(Product).filter_by(id=keyword_id).first()
+    def by_id(cls, product_id):
+        """Get product bases on product id"""
+        query = DBSession.query(Product).filter_by(id=product_id).first()
         return query
 
     @classmethod
     def update_data(cls, data_id, **kwargs):
-        """ Using for updating single keyword"""
+        """ Using for updating single product"""
         DBSession.query(Product).filter_by(id=data_id).update(kwargs)
         DBSession.commit()
         return 'keyword updated'
@@ -92,7 +92,7 @@ class Product(db.Model):
     # delete single topic by id
     @classmethod
     def delete_data(cls, data_id):
-        """ Using for delating singel keyword """
+        """ Delete product based on id"""
         product = DBSession.query(Product).filter_by(id=data_id).first()
         DBSession.delete(product)
         DBSession.commit()
@@ -100,7 +100,7 @@ class Product(db.Model):
 
     @classmethod
     def create_data(cls, **kwargs):
-        """Using for inserting keyword"""
+        """Using for inserting product"""
         api = Product(**kwargs)
         DBSession.add(api)
         DBSession.commit()
@@ -127,7 +127,7 @@ class Product(db.Model):
 
 class Sales(db.Model):
     """
-    opinion of a comment store in this table.
+    Table used for storing sales transaction
     """
     __tablename__ = "sales"
 
@@ -174,7 +174,7 @@ class Sales(db.Model):
 
     @classmethod
     def delete_data(cls, data_id):
-        """ Using for delating singel keyword """
+        """ Using for deleting single keyword """
         DBSession.query(Sales).filter_by(id=data_id).delete()
         DBSession.commit()
         return 'purchase deleted'
@@ -225,7 +225,7 @@ class Sales(db.Model):
 
 class Purchase(db.Model):
     """
-    opinion of a comment store in this table.
+     Table used for storing purchase transaction
     """
     __tablename__ = "purchase"
 
@@ -279,7 +279,7 @@ class Purchase(db.Model):
 
 class Damage(db.Model):
     """
-    opinion of a comment store in this table.
+     Table used for storing damage product.
     """
     __tablename__ = "damage"
 
@@ -351,11 +351,3 @@ class Damage(db.Model):
         return 'purchase created'
 
 
-
-        # if __name__ == '__main__':
-        # # app = current_app
-        #     with app.app_context():
-        #         data2 = Sales.by_date_top_product('2018-10-22')
-        #         for i in data2:
-        #             print(i)
-        # print(data.count())
